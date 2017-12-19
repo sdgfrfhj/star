@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>木头人</title>
+		<script type="text/javascript" src="js/jquery.js" ></script>
+	</head>
+	<style>
+		body,html{margin: 0;padding: 0;font-size: 20px;font-family: 'Open Sans', sans-serif,"\5B8B\4F53";width: 100%;height: 100%;overflow: hidden;}
+		body{background-image: url(img/bg.png);background-repeat: no-repeat;background-size: 100% 100%;}
+		img{width: 100%;display: block;}
+		.content{width: 1170px;height:100%;margin: 0 auto;position: relative;}
+		.content .logo{display:block;float:left;margin-top: 20px;background-image: -webkit-linear-gradient(left,#df21f5 , skyblue 25%, orange 50%, #000a80 75% , #df21f5);
+		-webkit-background-clip: text;-webkit-text-fill-color: transparent;font-size: 3rem;animation: logoColor 5s linear infinite;background-size: 200% 100%;font-family: -webkit-pictograph;
+		}
+		.content .moon{position: absolute;right: -220px;top: -45px;}
+		.content .winnower{position: absolute;bottom: 0;right: -220px;}
+		.content .winnower .w1{animation:animation-winnower 3s linear infinite ;}
+		.content .winnower .w2{position: absolute;bottom: 0px;right: 78px;width: 50px;height: 82px;z-index: -1;}
+		.content .star{position: absolute;left: -80px;bottom: 0;}
+		.content .five-star{position: absolute;bottom: 0;right: -80px;animation: animation-five-star 8s ease-in-out infinite;}
+		.content .wrap{width: 100%;height: 100%;}
+		.content .cube{width: 1170px;height: 100%;margin: 0 auto;transform-style: preserve-3d;animation: ani-rotate 10s linear infinite;}
+		.content .out{position: absolute;left: 40%;top: 40%;width: 200px;height: 200px;}
+		.content .font{background: url(img/block1.jpg);transform: translateZ(100px);}
+		.content .back{background: url(img/block2.jpg);transform: translateZ(-100px) rotateY(180deg);}
+		.content .top{background: url(img/block3.jpg);transform: translateX(100px) rotateY(90deg);}
+		.content .bottom{background: url(img/block4.jpg);transform: translateX(-100px) rotateY(-90deg);}
+		.content .left{background: url(img/block5.jpg);transform: translateY(100px) rotateX(90deg);}
+		.content .right{background: url(img/block6.jpg);transform: translateY(-100px) rotateX(-90deg);}
+		.music-fly{position: absolute;top: 0;left: 0;width: 100px;height: 98px;}
+		
+		@-webkit-keyframes ani-rotate{
+			0{transform: rotateX(0deg) rotateY(0deg);}
+			100%{transform: rotateX(360deg) rotateY(360deg);}
+		}
+		
+		@-webkit-keyframes animation-five-star{
+			0{opacity: 0;}
+			100%{opacity: 1;right: 100%;}
+		}
+		
+		@-webkit-keyframes animation-winnower{
+			0{transform: rotate(0deg);}
+			100%{transform: rotate(360deg);}
+		}
+		
+		@-webkit-keyframes logoColor{
+			0{background-position: 0 0;}
+			100%{background-position: -100% 0;}
+		}
+	</style>
+	<body>
+		<div class="content">
+			<div class="logo">ConTion</div>
+			<div class="wrap">
+				<div class="cube">
+					<div class="font out"></div> 
+					<div class="back out"></div> 
+					<div class="top out"></div> 
+					<div class="bottom out"></div> 
+					<div class="left out"></div> 
+					<div class="right out"></div> 
+				</div>
+			</div>
+			<div class="moon"><img src="img/moon.png" /></div>
+			<div class="winnower"><img src="img/winnower.png" class="w1" /><img src="img/winnower-bottom.png" class="w2" /></div>
+			<div class="star"><img src="img/22.png" /></div>
+			<div class="five-star"><img src="img/stars.png" /></div>
+		</div>
+		<div class="music-fly"><img src="img/music-fly.png" /><audio autoplay="autoplay" src="song/ge.mp3"></audio></div>
+		
+		<script type="text/javascript">
+			var oBall =	document.querySelector(".music-fly");
+			var leftMax = document.documentElement.clientWidth-oBall.clientWidth;
+			var topMax = document.documentElement.clientHeight-oBall.clientHeight;
+			var leftNum = 5;
+			var topNum = 5;
+			window.onresize =function(){
+				leftMax = document.documentElement.clientWidth-oBall.clientWidth;
+			    topMax = document.documentElement.clientHeight-oBall.clientHeight;
+			}
+			var sport=setInterval(function(){
+				var Left = oBall.offsetLeft+leftNum;
+				var Top = oBall.offsetTop+topNum;
+				if(Left>=leftMax){
+					Left=leftMax;
+					leftNum=-leftNum;
+				}else if(Left<=0){
+					Left=0;
+					leftNum=-leftNum;
+				};
+				if(Top>=topMax){
+					Top=topMax;
+					topNum=-topNum;
+				}else if(Top<=0){
+					Top=0;
+					topNum=-topNum;
+				};
+				oBall.style.left=Left+'px';
+				oBall.style.top=Top+'px';
+			},30)
+		</script>
+		<script type="text/javascript" src="js/star.js" ></script>
+		<script type="text/javascript">$(".star").mouseover(function(){$(this).stop(false,false).animate({"bottom":"100%"},5000,function(){$(this).css("bottom","0px");})});document.addEventListener("visibilitychange", function() {document.title = document.hidden ? "看这里，看这里!" : "木头人"})</script>
+	</body>
+</html>
