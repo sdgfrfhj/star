@@ -76,6 +76,7 @@
 			var topMax = document.documentElement.clientHeight-oBall.clientHeight;
 			var leftNum = 5;
 			var topNum = 5;
+			var flag=true;
 			window.onresize =function(){
 				leftMax = document.documentElement.clientWidth-oBall.clientWidth;
 			    topMax = document.documentElement.clientHeight-oBall.clientHeight;
@@ -100,6 +101,35 @@
 				oBall.style.left=Left+'px';
 				oBall.style.top=Top+'px';
 			},30)
+			
+			oBall.onclick=function(){
+				if(flag){
+					clearInterval(sport);
+					flag=false;
+				}else{
+					sport=setInterval(function(){
+					var Left = oBall.offsetLeft+leftNum;
+					var Top = oBall.offsetTop+topNum;
+					if(Left>=leftMax){
+						Left=leftMax;
+						leftNum=-leftNum;
+					}else if(Left<=0){
+						Left=0;
+						leftNum=-leftNum;
+					};
+					if(Top>=topMax){
+						Top=topMax;
+						topNum=-topNum;
+					}else if(Top<=0){
+						Top=0;
+						topNum=-topNum;
+					};
+					oBall.style.left=Left+'px';
+					oBall.style.top=Top+'px';
+					},30)
+					flag=true;
+				}
+			}
 		</script>
 		<script type="text/javascript" src="js/star.js" ></script>
 		<script type="text/javascript">$(".star").mouseover(function(){$(this).stop(false,false).animate({"bottom":"100%"},5000,function(){$(this).css("bottom","0px");})});document.addEventListener("visibilitychange", function() {document.title = document.hidden ? "看这里，看这里!" : "木头人"})</script>
