@@ -77,37 +77,12 @@
 			var leftNum = 5;
 			var topNum = 5;
 			var flag=true;
+			var time;
 			window.onresize =function(){
-				leftMax = document.documentElement.clientWidth-oBall.clientWidth;
+			    leftMax = document.documentElement.clientWidth-oBall.clientWidth;
 			    topMax = document.documentElement.clientHeight-oBall.clientHeight;
 			}
-			var sport=setInterval(function(){
-				var Left = oBall.offsetLeft+leftNum;
-				var Top = oBall.offsetTop+topNum;
-				if(Left>=leftMax){
-					Left=leftMax;
-					leftNum=-leftNum;
-				}else if(Left<=0){
-					Left=0;
-					leftNum=-leftNum;
-				};
-				if(Top>=topMax){
-					Top=topMax;
-					topNum=-topNum;
-				}else if(Top<=0){
-					Top=0;
-					topNum=-topNum;
-				};
-				oBall.style.left=Left+'px';
-				oBall.style.top=Top+'px';
-			},30)
-			
-			oBall.onclick=function(){
-				if(flag){
-					clearInterval(sport);
-					flag=false;
-				}else{
-					sport=setInterval(function(){
+			function sport(){
 					var Left = oBall.offsetLeft+leftNum;
 					var Top = oBall.offsetTop+topNum;
 					if(Left>=leftMax){
@@ -126,7 +101,14 @@
 					};
 					oBall.style.left=Left+'px';
 					oBall.style.top=Top+'px';
-					},30)
+			}
+			time=setInterval("sport()",30);
+			oBall.onclick=function(){
+				if(flag){
+					clearInterval(time);
+					flag=false;
+				}else{
+					time=setInterval("sport()",30);
 					flag=true;
 				}
 			}
