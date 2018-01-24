@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>木头人</title>
+		<title>夜 空 中 最 亮 的 星 !</title>
 		<script type="text/javascript" src="js/jquery.js" ></script>
 	</head>
 	<style>
@@ -114,6 +114,7 @@
 			}
 		</script>
 		<script type="text/javascript" src="js/star.js" ></script>
-		<script type="text/javascript">$(".star").mouseover(function(){$(this).stop(false,false).animate({"bottom":"100%"},5000,function(){$(this).css("bottom","0px");})});document.addEventListener("visibilitychange", function() {document.title = document.hidden ? "看这里，看这里!" : "木头人"})</script>
+		<script type="text/javascript">$(".star").mouseover(function(){$(this).stop(false,false).animate({"bottom":"100%"},5000,function(){$(this).css("bottom","0px")})});document.addEventListener("visibilitychange",function(){document.title=document.hidden?"看这里，看这里!":"夜空中最亮的星!"});function title(){var title=document.title.split('');title.push(title[0]);title.shift();document.title=title.join(' ')};setInterval(title,1000);</script>
+
 	</body>
 </html>
